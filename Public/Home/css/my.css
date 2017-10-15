@@ -1,0 +1,21 @@
+.title_r {
+    float: right;
+    margin-top: 0px;
+}
+.write {
+    display: block;
+    width: 100%;
+    background-color: #ffffff;
+    padding: 10px;
+    text-indent: 0.4em;
+    font-size: 13px;
+    color: #15b015;
+    margin-top: 8px;
+    float: left;
+}
+.write a{
+    color: #15b015;
+}
+.write a:hover{
+    color: red;
+}
