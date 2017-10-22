@@ -1,0 +1,23 @@
+#footer {
+    padding-bottom: 30px;
+    background: #eaeaea;
+    text-align: center;
+    margin-left: 0px;
+}
+.footer-info{
+	padding-top: 10px; 
+	margin: 0 auto;
+	border: 1px solid #000  /*边框*/
+}
+.footer-link{
+	margin-top: 30px;
+	border:1px solid #000;   /*边框*/
+	text-align: left;
+}
+.footer-li{
+	float: left;
+	width: 24%;
+}
+.footer-span{
+	color: #999
+}
