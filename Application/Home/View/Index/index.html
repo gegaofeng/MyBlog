@@ -7,19 +7,18 @@
         <meta name="description" content="{:C('WEB_SITE_DESCRIPTION')}"/>
     </head>
 <body>
-    <include file="Public/common_nav"/>
-    <include file="Public/banner"/>
-    <br />
-    <div class="container">
-        <br />
-        <div class="line-big">
-            <include file=""/>
-            <include file=""/>
-    </div>
+<include file="Public/common_nav"/>  <!--导航栏-->
+<!--<include file="Public/banner"/>    首页banner暂不启用 -->
+<br />
+<div class="container" style="margin-top: 60px;">
+    <div class="row">
+<include file="Public/common_left"/>
+<include file="Public/common_right"/>
 </div>
-    <br />
+</div>
+<br />
     <!--底部-->
-    <br />
-    <include file="Public/common_footer"/>
+<br />
+<include file="Public/common_footer"/>
 </body>
 </html>

@@ -7,11 +7,11 @@
 .footer-info{
 	padding-top: 10px; 
 	margin: 0 auto;
-	border: 1px solid #000  /*边框*/
+	/*border: 1px solid #000  /*边框*/
 }
 .footer-link{
 	margin-top: 30px;
-	border:1px solid #000;   /*边框*/
+	/*border:1px solid #000;   /*边框*/
 	text-align: left;
 }
 .footer-li{
