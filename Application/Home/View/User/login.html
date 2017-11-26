@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<include file="Public/common_header"/>
+	<title>登录</title>
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/login.css">
+</head>
+<body>
+	<include file="Public/common_nav"/>
+	  <div style="height:1px;"></div>
+  <div class="login">
+     <header>
+	    <h1>登录</h1>
+	 </header>
+	 <div class="sr">
+	    <form action=__CONTROLLER__/login method="POST">
+		    <div class="name">
+				<label>
+				<i class="sublist-icon glyphicon glyphicon-user"></i>
+				</label>
+				<input type="text"  name="username" placeholder="请输入用户名" class="name_inp">
+			</div>
+			 <div class="name">
+				<label>
+				<i class="sublist-icon glyphicon glyphicon-pencil"></i>
+				</label>
+				<input type="text"  name="userpwd" placeholder="请输入密码" class="name_inp">
+			</div>
+			<div class="name_ver inline">
+				<label class="float:left">
+				<i class="sublist-icon glyphicon glyphicon-pencil"></i>
+				</label>
+				<input type="text"  placeholder="请输入验证码" class="name_ver_input">
+				<img src="{:U('user/selfverify')}" class="img">
+			</div>
+			<button class="dl">登录</button>
+		</form>
+	 </div>
+  </div>
+  <include file="Public/common_footer"/>
+</body>
+</html>

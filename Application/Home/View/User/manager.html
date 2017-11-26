@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<include file="Public/common_header"/>
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/user_manager.css">
+	<title>账号中心</title>
+</head>
+<body>
+	<!--引入导航栏-->
+	<include file="Public/common_nav"/>
+<!--主体 开始-->
+<div class="container" style="margin: 60px auto 10px ">
+	<div class="row">
+    <div class="column col-xs-2">
+      <dl id="left_menu" class="left_menu" style="background-color: #C6D4E4; border:10px">
+			<dt class="act_dd"><a href="https://reg.163.com/account/accountInfo.jsp">帐号管理</a></dt>
+	        <dd><a href="https://reg.163.com/setinfo/ChangePwd_1.jsp?username=ahvshd@126.com">修改密码</a></dd>
+	        <dd><a href="https://reg.163.com/chg/ChangeInfo_0.jsp?username=ahvshd@126.com">修改基本信息</a></dd>
+	        <dd><a href="https://reg.163.com/chg/ShowBaomiInfo.jsp">帐号安全设置</a></dd>
+	        <dd style="position:relative;"><a href="https://reg.163.com/mibao/controller/mob/index.jsp">安全手机<span style="width: 20px;height: 14px;display: inline-block;position: absolute;background:url(/gaiban/images/hot.png?v=20160229) 0 0 no-repeat;_background:url(/gaiban/images/hot8.png?v=20160229) 0 0 no-repeat;top: 7px;left: 77px;*zoom:1;">&nbsp;</span></a></dd>
+	        <dd><a href="https://reg.163.com/jihuo/Jihuo.jsp">开通游戏付费</a></dd>
+	        <dd><a href="https://reg.163.com/mibao/controller/smdj/index.jsp">实名认证</a></dd>
+			<dd><a href="https://reg.163.com/account/mutipleAcctMgr.jsp">多帐号关联</a></dd>
+	        <dt><a href="https://reg.163.com/mibao/controller/goIndex.jsp">密保管理</a></dt>
+	        <dd><a href="https://reg.163.com/otp/controller/index.jsp">将军令</a></dd>
+	        <dd><a href="https://reg.163.com/mibao/controller/ppc/index.jsp">密保卡</a></dd>
+      </dl>
+    </div>
+    <script type="text/javascript">
+	window.onload = function(){
+		function stopDefault(e) {
+		    if (e && e.preventDefault)
+		        e.preventDefault();
+		    else
+		        window.event.returnValue = false;
+		    return false;
+		}
+		var myAccount = document.getElementById("myAccount");
+		var accountManage = document.getElementById("accountManage");
+	    if (myAccount.addEventListener) {
+	        myAccount.addEventListener("click", function(e){
+	        	stopDefault(e);
+	            _gaq.push(['_trackEvent', '我的帐号 main弹窗',location.href]);
+	            window.location.replace("http://reg.163.com/Main.jsp");
+	        });
+	    } else if (myAccount.attachEvent) {
+	        myAccount.attachEvent("onclick", function(e){
+	        	stopDefault(e);
+	            _gaq.push(['_trackEvent', '我的帐号 main弹窗',location.href]);
+	            window.location.replace("http://reg.163.com/Main.jsp");
+	        });
+	    }
+	    if (accountManage.addEventListener) {
+	        accountManage.addEventListener("click", function(e){
+	        	stopDefault(e);
+	            _gaq.push(['_trackEvent', '帐号管理 修改密保弹窗',location.href]);
+	            window.location.replace("https://reg.163.com/account/accountInfo.jsp");
+	        });
+	    } else if (accountManage.attachEvent) {
+	        accountManage.attachEvent("onclick", function(e){
+	        	stopDefault(e);
+	           _gaq.push(['_trackEvent', '帐号管理 修改密保弹窗',location.href]);
+	           window.location.replace("https://reg.163.com/account/accountInfo.jsp");
+	        });
+	    }
+		var leftMenu = document.getElementById('left_menu');
+		var As = leftMenu.getElementsByTagName('a');
+		for(var i = 0;i < As.length;i++){
+		    As[i].onclick = function(){
+		         _gaq.push(['_trackEvent', '校验页面中用户点击左侧导航栏次数',location.href]);
+		    }
+		}
+	}
+    </script>
+
+    <div class="column col-xs-9">
+    <h2 class="clum_title"><span class="f_w_b">基本信息</span></h2>
+    <ul class="info_list">
+        <li>
+            <div class="f_left">登录邮件地址：</div>
+            <div class="fm_right">
+                <b>ahvshd@126.com</b>&nbsp;&nbsp;
+            </div>
+        </li>
+        <li class="clear">昵称：
+            未填写
+        </li>
+        <li><a href="https://reg.163.com/account/updateBaseInfoIndex.do?username=ahvshd@126.com">编辑基本信息&gt;&gt;</a></li>
+
+    </ul>
+    <h2 class="clum_title"><span class="f_w_b">
+        重置密码方法</span></h2>
+    <ul class="info_list">
+            <li>
+                        <span class="s-gj">网易帐号管家<span class="c_999">(未绑定-<a href="https://id.163.com/gj/?from=urs_zhgl">马上绑定</a>)
+            </span></span>
+            </li>
+        <li>
+	  <span class="s_icon si1">手机号码<span class="c_999">
+          (已开通)
+	  </span></span>
+        </li>
+        <li><span class="s_icon si2">QQ号码<span class="c_999">
+            (已开通)
+	  </span></span>
+        </li>
+        <li><span class="s_icon si3">保密邮箱<span class="c_999">
+            (已开通)
+	  </span></span>
+        </li>
+        <li><a href="https://reg.163.com/change/showPasswordInfo.do">查看更多
+            重置密码方法&gt;&gt;</a></li>
+    </ul>
+    <h2 class="clum_title"><span class="f_w_b">帐号活动状态</span></h2>
+    <ul class="info_list">
+        <li>
+            上次登录情况：<br>
+            地点：上海<br>
+            时间：2017-11-25 09:57:34（2分钟前）<br>
+            <a href="javascript:void(0)" onclick="openUserLoginInfo()">查看最近登录详情&gt;&gt;</a>
+        </li>
+    </ul>
+</div>
+<script type="text/javascript">
+    if ($_id("del_btn")) {
+        $_id("del_btn").onclick = function () {
+            $_id("del_box").style.display = "";
+        };
+
+        $_id("del_cancel").onclick = function () {
+            $_id("del_box").style.display = "none";
+        };
+
+        $_id("del_confirm").onclick = function () {
+            $_id("del_box").style.display = "none";
+            //同意删除后调用
+            window.location.href = "/change/deleteLoginEmail.do?flag=1&username=ahvshd@126.com";
+        };
+    }
+</script>
+    <div class="clear"></div>
+  </div>
+  <div class="main_bottom"></div>
+</div>
+<!--主体 结束-->
+
+ <include file="Public/common_footer"/>
+</body>
+</html>
