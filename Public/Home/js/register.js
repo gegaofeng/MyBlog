@@ -19,15 +19,16 @@ var timeoutrun = 0; //倒计时计数器
 var vcodeGenerateTiem ;//最新图形验证码生成的时间
 var vcodeOvertimeInterval = 10 * 60 * 1000;//图形验证码有效期为10分钟
 var checkLogin = {
+    usernameReg:/^([a-zA-Z]+[a-zA-Z0-9]{5,11})$/, //匹配用户名
 	emailNameReg: /^(([a-zA-Z0-9]+\w*((\.\w+)|(-\w+))*[\.-]?[a-zA-Z0-9]+)|([a-zA-Z0-9]))$/, //匹配邮箱名称
     emailReg: /^(([a-zA-Z0-9]+\w*((\.\w+)|(-\w+))*[\.-]?[a-zA-Z0-9]+)|([a-zA-Z0-9]))\@[a-zA-Z0-9]+((\.|-)[a-zA-Z0-9]+)*\.[a-zA-Z0-9]+$/, //匹配邮箱
     mobileReg: /^1[3,4,5,7,8][0-9]{9}$/,//匹配电话号码
     vcodeReg: /^[a-zA-Z0-9]*$/,//匹配图形验证码
     msg: {
-    	'101' : '用户名用于登陆,字母开头',
-    	'102' : '手机号码不能为空',
+    	'101' : '用户名用于登陆,字母或数字,字母开头,6~20个字符',
+    	'102' : '用户名不能为空',
     	'103' : '用户名已被占用',
-    	'104' : '用户名已被用',
+    	'104' : '用户名格式不对',
     	'105' : '此手机号已注册，请更换其它手机号，或使用该&nbsp;<a href=\"signin.php?Email={#Email#}\" name=\"mobile_login _link\" class=\"more\">手机号登录</a>',
     	'111' : '密码为6-20个字符，可由英文、数字及符号组成',
     	'112' : '登录密码不能为空',
@@ -92,16 +93,24 @@ var checkLogin = {
             }
             */
             //alert('ajax')
+            //匹配用户名格式
+            if (!checkLogin.usernameReg.test(username)) {
+                $('#txt_username').addClass('wrong');
+                $('#J_tipUsername').removeClass('warn').html(checkLogin.msg['104']);
+                $('#spn_username_ok').removeClass('icon_yes').addClass('icon_wrong').show();
+                return false;
+            }
             $.ajax({
                 type: 'POST',
                 url: 'checkUserName',
                 data: 'username=' + username,
                 async: false,
                 success: function (flg) {
-                    alert(flg);
-                    if (flg == true) {
+                    //alert(flg);
+                    //alert(flg==true);
+                    if (flg == false) {
                         $('#txt_username').addClass('wrong')
-                        $('#J_tipUsername').removeClass('warn').html(checkLogin.msg['104'].replace('{#Email#}', username));
+                        $('#J_tipUsername').removeClass('warn').html(checkLogin.msg['103'].replace('{#Email#}', username));
                         $('#spn_username_ok').removeClass('icon_yes').addClass('icon_wrong').show();
                         usernameExist = true;
                         return ;
@@ -282,14 +291,15 @@ var checkLogin = {
     	},
     	checkVcodeIsOk: function(vcode){
     		var type=0;
-            alert('ajax');
+            //alert('ajax');
     		$.ajax({
     	        type: 'POST',
-    	        url: 'verifyImg',
-    	        data: 'vcode=' + vcode + '&type=' + type,
+    	        url: 'checkVerifyCode',
+    	        data: 'vcode=' + vcode,
     	        async: false,
     	        success: function (flg) {
-    	        	if (flg == 'false') {
+                    //alert(flg);
+    	        	if (flg == false) {
     	            	$('#txt_vcode').addClass('wrong');
     	                $('#spn_vcode_ok').removeClass('icon_yes').addClass('icon_wrong').css({'display':'inline-block'});
     	                $('#J_tipVcode').removeClass('warn').html(checkLogin.msg['163']);
@@ -298,17 +308,6 @@ var checkLogin = {
     	            	checkFocus('txt_vcode', 'spn_vcode_ok', 'J_tipVcode');
     	            	$('#spn_vcode_ok').removeClass('icon_wrong').addClass('icon_yes').css({'display':'inline-block'});
     	            	vcodeIsOk = true;
-    	            	//获取短信验证码
-    	            	if($('#J_mobileV').is(':visible')){
-    	            		if(!mobileIsOk){
-    	            			return false;
-    	            		}
-    	            	} else {
-    	            		if(!usernameIsOk){
-    	            			return false;
-    	            		}
-    	            	}
-            			checkLogin.mobileCodeBtn.sendMobileCodeFun();
     	            	return true;
     	            }
     	        }
@@ -406,20 +405,10 @@ function check_register() {
             $('#spn_repassword_ok').removeClass('icon_yes').addClass('icon_wrong').show();
             $('#J_tipSurePassword').removeClass('warn').html(checkLogin.msg['122']);
         }
-        if( $('#J_mobileV').is(':visible') && mobile=='' ) {
-        	$('#txt_mobile').addClass('wrong');
-            $('#spn_mobile_ok').removeClass('icon_yes').addClass('icon_wrong').show();
-            $('#J_tipMobile').removeClass('warn').html(checkLogin.msg['132']);
-        }
         if( vcode =='' ) {
         	$('#txt_vcode').addClass('wrong');
             $('#spn_vcode_ok').removeClass('icon_yes').addClass('icon_wrong').css({'display':'inline-block'});
             $('#J_tipVcode').removeClass('warn').html(checkLogin.msg['162']);
-        }
-        if (mobileCode == "") {
-            $('#J_MobileCode').addClass('wrong');
-            $('#spn_mobileCode_ok').removeClass('icon_yes').addClass('icon_wrong').show();
-            $('#J_tipMobileCode').removeClass('warn').html(checkLogin.msg['141']);
         }
         //防止重复提交
         submitBtnAvailability('enable');
@@ -432,13 +421,8 @@ function check_register() {
         submitBtnAvailability('enable');
         return false;
     }
-    //由于用户名处，单击邮箱后缀自动补全面板时，用到了setTimeout，
-    	//导致焦点在用户名处直接单击提交按钮时出现为对用户名进行验证情况，所以此处会对用户名进行再一次验证，
-    checkLogin.userName.checkUsername();
-	checkLogin.tool.showMobileAndUpdateVcode();
 
-    if(usernameIsOk && passwordIsOk && rePasswordIsOk && vcodeIsOk  && mobileCodeIsOk && agreementIsOk
-    		&& ((!$('#J_mobileV').is(':visible')) || mobileIsOk) ){
+    if(usernameIsOk && passwordIsOk && rePasswordIsOk && vcodeIsOk){
         $('#hdn_username').val(usernameTrim);
         $('#hdn_password').val(passwordTrim);
         $('#hdn_mobile').val(mobile);

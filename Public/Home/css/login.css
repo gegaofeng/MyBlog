@@ -19,9 +19,7 @@ html,body{
 	background-size:1920px 1000px;
 	perspective:500px;
 }
-*{
-		font-family:"仿宋";
-}
+
 .login{
 	width:450px;
 	position: relative;
@@ -106,11 +104,17 @@ html,body{
 	color:#fff;
 	border:0;
 	font-size:18px;
+	margin-top: 20px;
 }
 .img{
 	background:#fff;
-	width:50px;
 	height:45px;
 	float:left;
 }
-
+.name_verimg{
+	position:relative;
+	margin-bottom:20px;
+	clear:both;
+	width: 60%;
+    height: 45px;
+}

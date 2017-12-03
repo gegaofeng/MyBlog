@@ -339,23 +339,6 @@ $(function() {
         $(this).closest('form').find('.form-group').removeClass("check-error");
         $(this).closest('form').find('.form-group').removeClass("check-success");
     });
-    $('.tab .tab-nav li').each(function() {
-        var e = $(this);
-        var trigger = e.closest('.tab').attr("data-toggle");
-        if (trigger == "hover") {
-            e.mouseover(function() {
-                $showtabs(e);
-            });
-            e.click(function() {
-                return false;
-            });
-        } else {
-            e.click(function() {
-                $showtabs(e);
-                return false;
-            });
-        }
-    });
     //2016-01-04 鏂板锛屽乏鍙虫粦鍔ㄥ鑸�
     $(".slidemenu .icon-slidemenu").click(function() {
         $(".slidemenu .slidemenu-left,.slidemenu .slidemenu-right").toggle("slow");

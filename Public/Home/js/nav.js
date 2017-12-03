@@ -1,0 +1,26 @@
+$(function(){
+	$('#php').mouseover(function(){
+		$('#php').addClass('open');
+	});
+	$('#php').mouseout(function(){
+		$('#php').removeClass('open');
+	});
+	$('#front_end').mouseover(function(){
+		$('#front_end').addClass('open');
+	});
+	$('#front_end').mouseleave(function(){
+		$('#front_end').removeClass('open');
+	});
+	$('#sql').mouseover(function(){
+		$('#sql').addClass('open');
+	});
+	$('#sql').mouseleave(function(){
+		$('#sql').removeClass('open');
+	});
+	$('#operation').mousemove(function(){
+		$('#operation').addClass('open');
+	});
+	$('#operation').mouseleave(function(){
+		$('#operation').removeClass('open');
+	});
+});

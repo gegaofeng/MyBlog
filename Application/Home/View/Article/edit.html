@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html lang="zh-cn">
+    <head>
+    <include file="Public/common_header"/>
+    <title>{:C('WEB_SITE_TITLE')}</title>
+    <meta name="Keywords" content="{:C('WEB_SITE_KEYWORD')}"/>
+    <meta name="description" content="{:C('WEB_SITE_DESCRIPTION')}"/>
+    <script type="text/javascript" src="__STATIC__/ckeditor/ckeditor.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Home/js/edit.js"></script>
+</head>
+<body>
+<include file="Public/common_nav"/><!--导航栏-->
+<br />
+<div class="container" style="margin-top: 60px;">
+    <div style="background-color:#FFFFFF">
+        <form name="form1" method="post" action="\home\article\edit" onSubmit="return chkinput(this)">
+        <table>
+            <tr>
+                <td>文章标题：</td>
+                <td><input name="title" type="text" placeholder="请输入标题" size="40" id="edit_title" /><span id="title_tip"></span></td>
+            </tr>
+            <tr>
+                <td>作者：</td>
+                <td><input name="author" type="text" value="" size="40" id="edit_auth" /></td>
+            </tr>
+            <tr>
+                <td>来源：</td>
+                <td><input name="comefrom" type="text" value="" size="40" id="edit_orign" /></td>
+            </tr>
+            <tr>
+                <td>文章分类：</td>
+                <td>
+                <volist name="category" id="data">
+                    <input type="radio" name="category_id" value={$data.id} id="edit_cate">{$data.title}
+                </volist>
+            </td>
+            </tr>
+        </table> 
+        <div style="padding-top:3px;  clear:both;">
+            <textarea cols="80" id="content" name="content" rows="10" id="edit_cont">请输入文章内容！</textarea>
+            <script type="text/javascript">CKEDITOR.replace('content')</script>
+            </div>  
+        <div class="center_div" style=" padding-top:3px; padding-left:3px; float:left ">
+            <li style="display:inline; float:left; width:260px; height:22px; padding-top:2px; padding-left:2px; "><input type="button" name="imageField2" src="images/bg_04.jpg" value="提交" id="edit_submit" /></li>
+            <li style="display:inline; float:left; width:100px; height:22px; padding-top:2px; padding-left:2px; "> <input type="button" name="imageField" src="images/bg_06.jpg" onClick="form_reg.reset()" style="cursor:hand" value="重置" />
+            </li>
+        </div>
+        </form>
+    </div>  
+
+</div>
+<br />
+<!--底部-->
+<br />
+<include file="Public/common_footer"/>
+</body>
+</html>

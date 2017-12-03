@@ -9,15 +9,15 @@
 <body>
 <include file="Public/common_nav"/>
 <div style="height:80px;"></div>
-    <!--默认-->
-    		<form id="register_form" action="__ACTION__" method="post" onsubmit="return false">
-    			<div class="container">
-    <div class="shadow_box">
-	<div class="register_box">
-	    <div class="head">
-		<a href="javascript:void(0);" class="head_a head_a1">新用户注册</a>
-	    </div>
-	    <div class="body">
+<!--默认-->
+<form id="register_form" action="__ACTION__" method="post" onsubmit="return false">
+    <div class="container">
+	<div class="shadow_box">
+	    <div class="register_box">
+		<div class="head">
+		    <a href="javascript:void(0);" class="head_a head_a1">新用户注册</a>
+		</div>
+		<div class="body">
 		    <table style="width: 100%">
 			<tr>
 			    <td class="t">
@@ -28,8 +28,8 @@
 				<span id="J_tipUsername" class="cue warn"></span>
 			    </td>
 			    <td class="icon_ok">
-			    	&nbsp
-			    	<span id="spn_username_ok" class="icon_yes" style="display: none;"></span>
+				&nbsp
+				<span id="spn_username_ok" class="icon_yes" style="display: none;"></span>
 			    </td>
 			</tr>
 			<tr style="">
@@ -52,8 +52,8 @@
 				</span>
 			    </td>
 			    <td class="icon_ok">
-			    	&nbsp
-			    	<span id="span_password_ok" class="cue" style="display:"></span>
+				&nbsp
+				<span id="span_password_ok" class="cue" style="display:"></span>
 			    </td>
 			</tr>
 			<tr>
@@ -65,8 +65,8 @@
 				<span id="J_tipSurePassword" class="cue warn"></span>
 			    </td>
 			    <td>
-			    	&nbsp
-			    	<span id="spn_repassword_ok" class="icon_wrong" style="display: none;"></span>
+				&nbsp
+				<span id="spn_repassword_ok" class="icon_wrong" style="display: none;"></span>
 			    </td>
 			</tr>
 			<tr>
@@ -75,11 +75,11 @@
 			    </td>
 			    <td>
 				<input type="text" id="txt_vcode" name="txt_vcode" class="form-control" placeholder="请输入验证码" maxlength="4">	
-			    <span id="J_tipVcode" class="cue"></span>
+				<span id="J_tipVcode" class="cue"></span>
 			    </td>
 			    <td>
-			    	&nbsp
-			    	<span id="spn_vcode_ok" class="icon_wrong" style="display: none;"></span>
+				&nbsp
+				<span id="spn_vcode_ok" class="icon_wrong" style="display: none;"></span>
 			    </td>
 			</tr>
 			<tr>
@@ -88,16 +88,15 @@
 			</tr>
 			<tr>
 			    <td colspan="2" style="text-align: center;">
-				<button class="btn-lg btn-danger">注册</button>
+				<button id="J_submitRegister" class="btn-lg btn-danger">注册</button>
 			    </td>
 			</tr>
 		    </table>
-
-		</form>
+		    </form>
+		</div>
 	    </div>
 	</div>
     </div>
-</div>
-<include file="Public/common_footer"/>
+    <include file="Public/common_footer"/>
 </body>
 </html>
