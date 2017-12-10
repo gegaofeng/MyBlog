@@ -1,22 +1,20 @@
-                <div class="column col-xs-8">
-                  <volist name="lists" id="data">  
-                <div style="margin-bottom:40px;background-color: #ffffff;box-shadow: 0 0 10px 7px rgba(218, 218, 218, 0.5);">
-                    <p style="margin-bottom: -3px;">
-                        <a href="/home/article/detail/id/{$data.id}.html"><span class="badge bg-main">{$data.title}文章</span></a>
-
-                    <div class="title_r hidden-xs"><img src="__PUBLIC__/Home/images/tuijian.gif" style="width:70px"></div>
-                    </p>
-                    <p>
-                        {$data.description}
-                    </p>
-                    <p class="write hidden-sm">
-                        <a><span class="glyphicon glyphicon-time"></span></a> &nbsp;{$data.create_time}&nbsp;&nbsp;作者：Mr Gao&nbsp;&nbsp;分类：[&nbsp;<a href="{$data.icon_url}">{$data.icon_alt}</a>&nbsp;]<span class="hidden-xs">&nbsp;&nbsp;点击：[&nbsp;{$data.view}&nbsp;]</span><span class="hidden-xs">&nbsp;&nbsp;回复：[&nbsp;{$data.view}&nbsp;]</span>
-                    </p>
-                </div>
-            </volist>
-            <div class="pagination">
-                <ul>
-                    {$page}
-                </ul>
-            </div>
-            </div>
+<div class="column col-xs-8">
+    <volist name="lists" id="data">  
+        <div style="margin-bottom:40px;background-color: #ffffff;box-shadow: 0 0 10px 7px rgba(218, 218, 218, 0.5);">
+            <p style="margin-bottom: -3px;">
+                <a href="/home/article/detail/id/{$data.id}.html"><span class="badge bg-main">{$data.title}</span></a>
+            </p>
+            <p>
+                {$data.description}
+            </p>
+            <p class="write hidden-sm">
+                <a><span class="glyphicon glyphicon-time"></span></a> &nbsp;{$data.create_time}&nbsp;&nbsp;作者：{$data.auth}</data>&nbsp;&nbsp;分类：[&nbsp;<a href="{$data.icon_url}">{$data.icon_alt}</a>&nbsp;]<span class="hidden-xs">&nbsp;&nbsp;点击：[&nbsp;{$data.view}&nbsp;]</span><span class="hidden-xs">&nbsp;&nbsp;回复：[&nbsp;{$data.view}&nbsp;]</span>
+            </p>
+        </div>
+    </volist>
+<div class="pagination">
+<ul>
+    {$page}
+</ul>
+</div>
+</div>

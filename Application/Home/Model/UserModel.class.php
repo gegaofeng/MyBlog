@@ -16,10 +16,13 @@ class UserModel extends Model{
 	*/
 	public function login($username,$password){
 		$info=$this->where("username='$username'")->find();
-		dump($info);
+		//dump($info);
 		if($info){
 			if ($info['password']===$password) {
+				session('id',$info['id']);
 				return true;
+			}else{
+				return false;
 			}
 		}else{
 			return false;

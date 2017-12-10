@@ -14,7 +14,7 @@
 			<li><a href="#">php</a></li>
 			<li class="divider"></li>
 			<li><a href="#">Laravel</a></li>
-			<li><a href="#">Thinkphp</a></li>
+			<li><a href="/home/article/lists/category/thinkphp.html">Thinkphp</a></li>
 			<li><a href="#">Yii</a></li>
 			<li><a href=""></a></li>
 		    </ul>
@@ -22,12 +22,13 @@
 		<li class="dropdown" id="front_end">
 		    <a href=""  class="" data-toggle="dropdown" onclick="event.stopPropagation()||(event.cancelBubble = true);">前端<span class="caret"></span></a>
 		    <ul class="dropdown-menu">
-			<li><a href="#">HTML</a></li>
-			<li><a href="#">CSS</a></li>
+			<li><a href="/home/article/lists/category/html.html">HTML</a></li>
+			<li><a href="/home/article/lists/category/css.html">CSS</a></li>
 			<li><a href="#">Javascript</a></li>
 			<li class="divider"></li>
-			<li><a href="#">JQuery</a></li>
-			<li><a href="#">Node.js</a></li>
+			<li><a href="/home/article/lists/category/jquery.html">JQuery</a></li>
+			<li><a href="/home/article/lists/category/nodejs.html">Node.js</a></li>
+			<li><a href="/home/article/lists/category/argularjs.html">argularjs</a></li>
 		    </ul>
 		</li>
 		<li class="dropdown" id="sql">
@@ -45,14 +46,16 @@
 		    </ul>
 		</li>
             </ul>
-            <form class="navbar-form navbar-left">
+            <form class="navbar-form navbar-left" action="\home\article\search" method="get">
                 <div class="form-group">
-		    <input type="text" name="" placeholder="search">
-		    <button type="button" class="btn btn-danger">search</button>
-		</div>
+		    	<input class="form-control" type="text" name="keywords" placeholder="请输入关键词">
+		    	<button type="submit" class="btn btn-danger">搜索</button>
+				</div>
             </form>
+
                 <ul class="nav navbar-nav navbar-right">
-                	<li><a href="home\article\edit">发文</a></li>
+                <li><a href="\home\article\edit">发文</a></li>
+                <li><a href="#">|</a></li>
         		<li><a href="{$nav[logurl]}">{$nav[username]}</a></li>
         		<li><a href="#">|</a></li>
         		<li><a href="{$nav[regurl]}">{$nav[logout]}</a></li>

@@ -71,7 +71,7 @@ class DocumentModel extends Model{
 		$content=M('DocumentArticle');
 		$artcon['content']=$con;
 		$artcon['id']=$info;
-		var_dump($artcon);
+		//var_dump($artcon);
 		if($content->add($artcon)){
 		return true;
 		}else{

@@ -1,55 +1,60 @@
 var msg={
 	'101':'文章标题不能为空',
 	'102':'作者不能为空',
-	'103':'来源不能为空',
+	'103':'必须选择一个来源',
 	'104':'必须选择一个分类',
 	'105':'内容不能为空',
 };
 var titleISOK=false;
-var authISOK=false;
+var authISOK=true;
 var cateISOK=false;
-var origISOK=false;
+var orignISOK=false;
 var contISOK=false;
 
-function check_title(){
-	var titleTrim=444+$.trim($('#edit_title').val())+45445;
-	if (titleTrim="") {
+function checkTitle(){
+	var titleTrim=$.trim($('#edit_title').val());
+	if (titleTrim=='') {
 		$('#edit_title').addClass('wrong');
 		$('#title_tip').html(msg['101']);
 	}else{
 		titleISOK=true;
-		$('#title_tip').html('真');
+		//$('#title_tip').html('真+titleTrim');
 	}
 }
-function check_auth(){
+function checkAuth(){
 	var authTrim=$.trim($('#edit_auth').val());
-	if (authTrim='') {
+	checkFocus('edit_auth','autn_tip');
+	if (authTrim=='') {
 		$('#edit_auth').addClass('wrong');
 		$('#auth_tip').html(msg['102']);
 	}else{
 		authISOK=true;
 	}
 }
-function check_cate(){
-	var cateTrim=$('#edit_cate').val();
-	if (cateTrim='') {
+function checkCate(){
+	var cateTrim=$('input[name="category_id"]:checked').val();
+	checkFocus('edit_cate','cate_tip');
+	if (cateTrim=='') {
 		$('#cate_tip').html(msg['104']);
 	}else{
 		cateISOK=true;
 	}
 }
-function check_orign(){
-	var orignTrim=$.trim($('#edit_orign').val());
-	if (orignTrim='') {
-		$('#edit_orign').addClass('wrong');
+function checkOrign(){
+	var orignTrim=$('input[name="edit_orign"]:checked').val();
+	checkFocus('edit_orign','orign_tip');
+	if (orignTrim=='') {
 		$('#orign_tip').html(msg['103']);
 	}else{
-		origISOK=true;
+		orignISOK=true;
 	}
 }
-function check_cont(){
-	var contTrim=$.trim($('#edit_cont').val());
-	if (contTrim='') {
+function checkCont(){
+	var contTrim=$('#edit_cont').val();
+	//var contTrim=CKEDITOR.instances.content.getData();
+	//alert(contTrim);
+	checkFocus('edit_cont','cont_tip')
+	if (contTrim=='') {
 		$('#edit_cont').addClass('wrong');
 		$('#cont_tip').html(msg['105']);
 	}else{
@@ -57,53 +62,77 @@ function check_cont(){
 	}
 }
 
-function edit_submit(){
+//将单元格恢复到最初样式
+function checkFocus(inputId, tipId , clearTip) {
+    $('#' + inputId).removeClass('wrong');
+    if( clearTip === 'no'){
+    	$('#' + tipId).addClass('warn');
+    }else{
+    	$('#' + tipId).addClass('warn').html('');
+    }
+}
+
+function editSubmit(){
 	var titleTrim=$.trim($('#edit_title').val());
 	var authTrim=$.trim($('#edit_auth').val());
-	var cateTrim=$('#edit_cate').val();
-	var orignTrim=$.trim($('#edit_orign').val());
 	var contTrim=$.trim($('#edit_cont').val());
-	if (titleTrim='') {
+	if (titleTrim=='') {
 		$('#edit_title').addClass('wrong');
 		$('#title_tip').html(msg['101']);
 	};
-	if (authTrim='') {
+	if (authTrim=='') {
 		$('#edit_auth').addClass('wrong');
 		$('#auth_tip').html(msg['102']);
 	};
-		if (orignTrim='') {
-		$('#edit_orign').addClass('wrong');
+	if (!orignISOK) {
 		$('#orign_tip').html(msg['103']);
 	};
-		if (cateTrim='') {
+	if (!cateISOK) {
 		$('#cate_tip').html(msg['104']);
 	};
-		if (contTrim='') {
+	checkCont();
+	if (contTrim=='') {
 		$('#edit_cont').addClass('wrong');
 		$('#cont_tip').html(msg['105']);
 	};
-	if (titleISOK&&authISOK&&origISOK&&cateISOK&&contISOK) {
-		return true;
+	//alert('title='+titleISOK+',auth='+authISOK+',orign='+orignISOK+'cate='+cateISOK+',cont='+contISOK);
+	//alert($('#edit_content').val());
+	if (titleISOK&&authISOK&&orignISOK&&cateISOK&&contISOK) {
+        $("#edit_form").attr("onsubmit","return true;");
 	}
 }
 
+//清空表格
+function formReset(){
+	$('#edit_title').val('');
+	$('#edit_auth').val('');
+	$('#edit_orign').val('');
+	$('#edit_content').val('');
+}
+
 $(function(){
+	$('#edit_title').focus(function(){
+		checkFocus('edit_title','title_tip');
+	});
 	$('#edit_title').blur(function(){
-		check_title();
+		checkTitle();
+	});
+	$('#edit_auth').focus(function(){
+		checkFocus('edit_auth','auth_tip');
 	});
 	$('#edit_auth').blur(function(){
-		check_auth();
+		checkAuth();
 	});
-	$('#edit_orign').blur(function(){
-		check_orign();
+	$('#edit_orign').focus(function(){
+		checkFocus('edit_orign','orign_tip');
+	})
+	$('input[name="edit_orign"]').blur(function(){
+		checkOrign();
 	});
-	$('#edit_cate').blur(function(){
-		check_cate();
-	});
-	$('#edit_cont').blur(function(){
-		check_cont();
+	$('input[name="category_id"]').blur(function(){
+		checkCate();
 	});
 	$('#edit_submit').click(function(){
-		check_submit();
+		editSubmit();
 	});
 })

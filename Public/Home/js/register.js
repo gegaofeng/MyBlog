@@ -384,7 +384,6 @@ function check_register() {
     var mobile = $.trim($('#txt_mobile').val());
     var vcode = $.trim($('#txt_vcode').val());
     var mobileCode = $.trim($('#J_MobileCode').val());
-    var mobilePhone = ''; //验证手机号码， 如果用户使用手机号注册，那么验证手机号和注册手机号相等
     if (usernameTrim == "" || passwordTrim == "" || repasswordTrim == "" || vcode == ''
     	|| ($('#J_mobileV').is(':visible') && mobile=='')
     	|| ($('.j-phoneVcode').is(':visible') && mobileCode == "")) {
@@ -425,8 +424,6 @@ function check_register() {
     if(usernameIsOk && passwordIsOk && rePasswordIsOk && vcodeIsOk){
         $('#hdn_username').val(usernameTrim);
         $('#hdn_password').val(passwordTrim);
-        $('#hdn_mobile').val(mobile);
-        // 手机注册填完短信验证码点提交
         $("#register_form").attr("onsubmit","return true;");
         $('#btn_confirm').click();
         //防止重复提交

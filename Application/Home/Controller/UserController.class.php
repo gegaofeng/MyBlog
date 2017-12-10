@@ -21,7 +21,7 @@ class UserController extends Controller {
     		//dump($result);
     		if($result){
                 session('username',$_POST['txt_username']);
-    			$this-> redirect('Index/index','',3,'登录成功，正在跳转到首页....');
+    			$this-> redirect('Index/index','',2,'登录成功，正在跳转到首页....');
     		}else{
                 $_POST[]=array();
                 echo "<script>alert('用户名或密码错误')</script>";
@@ -59,7 +59,7 @@ class UserController extends Controller {
             $this-> redirect('Index/index','',0,'');
         }
     }else{
-//                dump($user->getError());//输出验证的错误信息
+//      dump($user->getError());//输出验证的错误信息
 		$this -> assign('errorInfo',$user->getError());
             }
         }
