@@ -28,7 +28,7 @@ class ArticleController extends Controller{
         $user=new \Home\Common\tool\ToolController();
         $user->statecheck();
         //获取关键词
-        $keywords=$_GET['keywords'];
+        $keywords=I('get.keywords');
         $this->assign('keywords',$keywords);
         $category=D('Category');
         $document=D('Document');
@@ -50,52 +50,62 @@ class ArticleController extends Controller{
             $row = $category->where($where)->find();
             switch ($row['name']){
                 case "php":
-                    $v['icon_url'] = '/index.php?s=/home/article/lists/category/php.html';
+                    $v['icon_url'] = '/home/article/lists/category/php.html';
                     $v['icon'] = '/Public/static/icons/php.jpg';
                     $v['icon_alt'] = 'php';
                     break;
+                case "thinkphp":
+                    $v['icon_url'] = '/home/article/lists/category/thinkphp.html';
+                    $v['icon'] = '/Public/static/icons/thinkphp.jpg';
+                    $v['icon_alt'] = 'thinkphp';
+                    break;
                 case "redis":
-                    $v['icon_url'] = '/index.php?s=/home/article/lists/category/redis.html';
+                    $v['icon_url'] = '/home/article/lists/category/redis.html';
                     $v['icon'] = '/Public/static/icons/redis.jpg';
                     $v['icon_alt'] = 'redis';
                     break;
                 case "memcached":
-                    $v['icon_url'] = '/index.php?s=/home/article/lists/category/memcached.html';
+                    $v['icon_url'] = '/home/article/lists/category/memcached.html';
                     $v['icon'] = '/Public/static/icons/memcached.jpg';
                     $v['icon_alt'] = 'memcached';
                     break;
                 case "mongodb":
-                    $v['icon_url'] = '/index.php?s=/home/article/lists/category/mongodb.html';
+                    $v['icon_url'] = '/home/article/lists/category/mongodb.html';
                     $v['icon'] = '/Public/static/icons/mongodb.jpg';
                     $v['icon_alt'] = 'mongodb';
                     break;
                 case "mysql":
-                    $v['icon_url'] = '/index.php?s=/home/article/lists/category/mysql.html';
+                    $v['icon_url'] = '/home/article/lists/category/mysql.html';
                     $v['icon'] = '/Public/static/icons/mysql.jpg';
                     $v['icon_alt'] = 'mysql';
                     break;
                 case "linux":
-                    $v['icon_url'] = '/index.php?s=/home/article/lists/category/linux.html';
+                    $v['icon_url'] = '/home/article/lists/category/linux.html';
                     $v['icon'] = '/Public/static/icons/linux.jpg';
                     $v['icon_alt'] = 'linux';
                     break;
                 case "apache":
-                    $v['icon_url'] = '/index.php?s=/home/article/lists/category/apache.html';
+                    $v['icon_url'] = '/home/article/lists/category/apache.html';
                     $v['icon'] = '/Public/static/icons/apache.jpg';
                     $v['icon_alt'] = 'apache';
                     break;
                 case "nginx":
-                    $v['icon_url'] = '/index.php?s=/home/article/lists/category/nginx.html';
+                    $v['icon_url'] = '/home/article/lists/category/nginx.html';
                     $v['icon'] = '/Public/static/icons/nginx.jpg';
                     $v['icon_alt'] = 'nginx';
                     break;
                 case "nodejs":
-                    $v['icon_url'] = '/index.php?s=/home/article/lists/category/nodejs.html';
+                    $v['icon_url'] = '/home/article/lists/category/nodejs.html';
                     $v['icon'] = '/Public/static/icons/nodejs.jpg';
                     $v['icon_alt'] = 'nodejs';
                     break;
+                case "ionic":
+                    $v['icon_url'] = '/home/article/lists/category/ionic.html';
+                    $v['icon'] = '/Public/static/icons/ionic.jpg';
+                    $v['icon_alt'] = 'ionic';
+                    break;
                 default:
-                    $v['icon_url'] = '/index.php?s=/home/article/lists/category/argularjs.html';
+                    $v['icon_url'] = '/home/article/lists/category/argularjs.html';
                     $v['icon'] = '/Public/static/icons/argularjs.jpg';
                     $v['icon_alt'] = 'argularjs';
             }
@@ -135,7 +145,6 @@ class ArticleController extends Controller{
         $this->assign('page',$show);
         //文章检索
         $result=$docList->where($where)->order('create_time desc')->limit($page->firstRow.','.$page->listRows)->select();
-        //dump($result);
         foreach ($result as &$v) {
             $v['create_time']=date('Y-m-d H:i:s',$v['create_time']);
             $tmpId = $v['category_id'];
@@ -143,57 +152,62 @@ class ArticleController extends Controller{
             $row =  $Category->where($where)->find();
             switch ($row['name']){
                 case "php":
-                    $v['icon_url'] = '/index.php?s=/home/article/lists/category/php.html';
+                    $v['icon_url'] = '/home/article/lists/category/php.html';
                     $v['icon'] = '/Public/static/icons/php.jpg';
                     $v['icon_alt'] = 'php';
                     break;
+                case "thinkphp":
+                    $v['icon_url'] = '/home/article/lists/category/thinkphp.html';
+                    $v['icon'] = '/Public/static/icons/thinkphp.jpg';
+                    $v['icon_alt'] = 'thinkphp';
+                    break;
                 case "redis":
-                    $v['icon_url'] = '/index.php?s=/home/article/lists/category/redis.html';
+                    $v['icon_url'] = '/home/article/lists/category/redis.html';
                     $v['icon'] = '/Public/static/icons/redis.jpg';
                     $v['icon_alt'] = 'redis';
                     break;
                 case "memcached":
-                    $v['icon_url'] = '/index.php?s=/home/article/lists/category/memcached.html';
+                    $v['icon_url'] = '/home/article/lists/category/memcached.html';
                     $v['icon'] = '/Public/static/icons/memcached.jpg';
                     $v['icon_alt'] = 'memcached';
                     break;
                 case "mongodb":
-                    $v['icon_url'] = '/index.php?s=/home/article/lists/category/mongodb.html';
+                    $v['icon_url'] = '/home/article/lists/category/mongodb.html';
                     $v['icon'] = '/Public/static/icons/mongodb.jpg';
                     $v['icon_alt'] = 'mongodb';
                     break;
                 case "mysql":
-                    $v['icon_url'] = '/index.php?s=/home/article/lists/category/mysql.html';
+                    $v['icon_url'] = '/home/article/lists/category/mysql.html';
                     $v['icon'] = '/Public/static/icons/mysql.jpg';
                     $v['icon_alt'] = 'mysql';
                     break;
                 case "linux":
-                    $v['icon_url'] = '/index.php?s=/home/article/lists/category/linux.html';
+                    $v['icon_url'] = '/home/article/lists/category/linux.html';
                     $v['icon'] = '/Public/static/icons/linux.jpg';
                     $v['icon_alt'] = 'linux';
                     break;
                 case "apache":
-                    $v['icon_url'] = '/index.php?s=/home/article/lists/category/apache.html';
+                    $v['icon_url'] = '/home/article/lists/category/apache.html';
                     $v['icon'] = '/Public/static/icons/apache.jpg';
                     $v['icon_alt'] = 'apache';
                     break;
                 case "nginx":
-                    $v['icon_url'] = '/index.php?s=/home/article/lists/category/nginx.html';
+                    $v['icon_url'] = '/home/article/lists/category/nginx.html';
                     $v['icon'] = '/Public/static/icons/nginx.jpg';
                     $v['icon_alt'] = 'nginx';
                     break;
                 case "nodejs":
-                    $v['icon_url'] = '/index.php?s=/home/article/lists/category/nodejs.html';
+                    $v['icon_url'] = '/home/article/lists/category/nodejs.html';
                     $v['icon'] = '/Public/static/icons/nodejs.jpg';
                     $v['icon_alt'] = 'nodejs';
                     break;
                 case "ionic":
-                    $v['icon_url'] = '/index.php?s=/home/article/lists/category/ionic.html';
+                    $v['icon_url'] = '/home/article/lists/category/ionic.html';
                     $v['icon'] = '/Public/static/icons/ionic.jpg';
                     $v['icon_alt'] = 'ionic';
                     break;
                 default:
-                    $v['icon_url'] = '/index.php?s=/home/article/lists/category/argularjs.html';
+                    $v['icon_url'] = '/home/article/lists/category/argularjs.html';
                     $v['icon'] = '/Public/static/icons/argularjs.jpg';
                     $v['icon_alt'] = 'argularjs';
             }
@@ -240,7 +254,6 @@ class ArticleController extends Controller{
 
 
         if(!empty($_POST)){
-            var_dump($_POST);
             //文章具体内容处理
             $article['title']=$_POST['title'];
             $article['category_id']=$_POST['category_id'];
@@ -252,7 +265,7 @@ class ArticleController extends Controller{
             $article['uid']=session('id');
             $article['create_time']=time();
             $contents=$_POST['content'];
-            var_dump($article);
+            //var_dump($article);
             //var_dump($contents);
             $document=D('Document');
             //$info=$article->add($article);

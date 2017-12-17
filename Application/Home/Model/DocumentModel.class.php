@@ -18,7 +18,7 @@ class DocumentModel extends Model{
 	public function detail($id){
 		//获取基础数据
 		$info=$this->field(true)->find($id);
-		if(!(is_array($info)||1!==info['status'])){
+		if(!(is_array($info)||$info['status']!==1)){
 			$this->error='文档被禁用或文档不存在';
 			return false;
 		}
@@ -32,7 +32,7 @@ class DocumentModel extends Model{
 	public function detailvb($id){
 		//获取基础数据
 		$info=$this->field(true)->find($id);
-		if(!(is_array($info)||1!==info['status'])){
+		if(!(is_array($info)||$info['status']!==1)){
 			$this->error='文档被禁用或文档不存在';
 			//return false;
 		}
